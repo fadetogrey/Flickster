@@ -22,6 +22,12 @@ import java.util.List;
 
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
+    private static class ViewHolder {
+        TextView title;
+        ImageView image;
+        TextView overview;
+    }
+
     public MovieArrayAdapter(Context context, List<Movie> movies) {
         super(context, android.R.layout.simple_list_item_1, movies);
     }
@@ -36,30 +42,32 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        //get the data item for this position
+        // Get the data item for this position
         Movie movie = getItem(position);
 
-        //get the existing view being reused
+        // Get the existing view being reused
+        ViewHolder viewHolder;
         if (convertView == null) {
+            // If there's no view to re-use, inflate a brand new view for row
+            viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_movie, parent, false);
+            viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.ivMovieImage);
+            viewHolder.image.setImageResource(0);
+            convertView.setTag(viewHolder);
+        } else {
+            // View is being recycled, retrieve the viewHolder object from tag
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        //find the image view widget
-        ImageView ivImage = (ImageView) convertView.findViewById(R.id.ivMovieImage);
-        ivImage.setImageResource(0);
-
-        //find the movie title widget
-        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-
-        //find the overview widget
-        TextView tvOverview = (TextView) convertView.findViewById(R.id.tvOverview);
-
-        //populate data to the widgets
-        tvTitle.setText(movie.getOriginalTitle());
-        tvOverview.setText(movie.getOverview());
+        // Populate the data from the data object via the viewHolder object
+        // into the template view.
+        viewHolder.title.setText(movie.getOriginalTitle());
+        viewHolder.overview.setText(movie.getOverview());
         //use 3rd party lib to set the image
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(ivImage);
+        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.image);
 
         return convertView;
     }
