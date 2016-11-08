@@ -1,12 +1,5 @@
 # Project 1 - Flickster Android App
 
-Flickster shows the latest movies currently playing in theaters. Han Android app for displaying a list of movie summaries.
-Here are the supported user stores:
-* [x] Enter an item on the text field and click ADD 
-* [x] Long click to delete an item
-* [x] Tap an item to edit in another screen
-* [x] Save an updated item and return to the main items view
-
 Flickster shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
 Time spent: 4+ hours spent in total
