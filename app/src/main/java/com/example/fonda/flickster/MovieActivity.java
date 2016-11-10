@@ -35,6 +35,8 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+        // Hide the action bar
+        getSupportActionBar().hide();
 
         // Initialize the data model
         movies = new ArrayList<>();

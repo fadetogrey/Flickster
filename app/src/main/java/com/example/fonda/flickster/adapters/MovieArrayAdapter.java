@@ -1,6 +1,7 @@
 package com.example.fonda.flickster.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,15 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         viewHolder.title.setText(movie.getOriginalTitle());
         viewHolder.overview.setText(movie.getOverview());
         //use 3rd party lib to set the image
-        Picasso.with(getContext()).load(movie.getPosterPath()).into(viewHolder.image);
+
+        String path = "";
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            path = movie.getBackdropPath();
+        } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            path = movie.getPosterPath();
+        }
+        Picasso.with(getContext()).load(path).into(viewHolder.image);
 
         return convertView;
     }
