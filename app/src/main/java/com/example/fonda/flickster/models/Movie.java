@@ -17,6 +17,11 @@ public class Movie {
     String originalTitle;
     String overview;
     String posterPath;
+    Long voteAverage;
+
+    public enum MovieImageTypes {
+        BACKDROP, POSTER
+    }
 
     /**
      * Constructs a Movie object
@@ -28,6 +33,7 @@ public class Movie {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.posterPath = jsonObject.getString("poster_path");
+        this.voteAverage = jsonObject.getLong("vote_average");
     }
 
     /**
@@ -79,6 +85,14 @@ public class Movie {
      */
     public String getOverview() {
         return overview;
+    }
+
+    /**
+     * Returns the movie vote average
+     * @return Long respresenting movie vote average
+     */
+    public Long getVoteAverage() {
+        return voteAverage;
     }
 
 }
