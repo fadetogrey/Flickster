@@ -43,8 +43,8 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/a/wy7Z2' title='Video Walkthrough Portrait' width='' alt='Video Walkthrough Portrait' />
-<img src='http://imgur.com/a/z44Ig' title='Video Walkthrough Landscape' width='' alt='Video Walkthrough Landscape' />
+![Video Walkthrough](Flickster_Heterogeneous_P.gif)
+![Video Walkthrough](Flickster_Heterogeneous_L.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
