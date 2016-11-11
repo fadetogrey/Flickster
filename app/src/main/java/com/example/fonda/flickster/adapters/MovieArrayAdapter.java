@@ -1,6 +1,7 @@
 package com.example.fonda.flickster.adapters;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,18 +71,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         Movie movie = getItem(position);
         // Get the view type for this position;
         int viewType = getItemViewType(position);
-
-
-
         String path = "";
-        /*
-        int orientation = getContext().getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            path = movie.getBackdropPath();
-        } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            path = movie.getPosterPath();
-        }
-        */
 
         if (viewType == Movie.MovieImageTypes.BACKDROP.ordinal()) {
             ViewHolderPopular viewHolderPopular;
@@ -94,7 +84,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                 viewHolderPopular.image.setImageResource(0);
                 convertView.setTag(viewHolderPopular);
                 //use 3rd party lib to set the image
-                path = movie.getBackdropPath();
+                path = getImagePath(movie, true);
                 Picasso.with(getContext()).load(path).transform(new RoundedCornersTransformation(10, 10)).into(viewHolderPopular.image);
             } else {
                 viewHolderPopular = (ViewHolderPopular) convertView.getTag();
@@ -115,12 +105,29 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                 viewHolder.title.setText(movie.getOriginalTitle());
                 viewHolder.overview.setText(movie.getOverview());
                 //use 3rd party lib to set the image
-                path = movie.getPosterPath();
+                path = getImagePath(movie, false);
                 Picasso.with(getContext()).load(path).transform(new RoundedCornersTransformation(10, 10)).into(viewHolder.image);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
         }
         return convertView;
+    }
+
+    /**
+     * Returns the appropriate image path (TODO: Check with Nathan)
+     * @param movie
+     * @param isBackDrop
+     * @return
+     */
+    private String getImagePath(Movie movie, boolean isBackDrop) {
+        String path = null;
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if ((orientation == Configuration.ORIENTATION_LANDSCAPE) || isBackDrop) {
+            path = movie.getBackdropPath();
+        } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            path = movie.getPosterPath();
+        }
+        return path;
     }
 }

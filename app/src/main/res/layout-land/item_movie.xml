@@ -19,8 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/ivMovieImage"
         android:layout_toEndOf="@+id/ivMovieImage"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
+        android:layout_marginLeft="@dimen/title_indent"
+        android:layout_marginStart="@dimen/title_indent"
         android:layout_alignParentTop="true"
         android:id="@+id/tvTitle"
         android:textAppearance="@android:style/TextAppearance.Large" />

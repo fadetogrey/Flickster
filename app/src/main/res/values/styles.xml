@@ -9,6 +9,11 @@
     </style>
 
     <style name="OverviewFont">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/overview_text_size</item>
+    </style>
+
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowBackground">@color/darkThemeBackgroundColor</item>
+        <item name="android:textColor">@color/darkThemeForegroundColor</item>
     </style>
 </resources>
