@@ -1,7 +1,6 @@
 package com.example.fonda.flickster.adapters;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,13 +27,15 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
     public static final int POPULAR_THRESHOLD = 5;
 
     private static class ViewHolder {
-        TextView title;
         ImageView image;
         TextView overview;
+        TextView title;
     }
 
     private static class ViewHolderPopular {
         ImageView image;
+        TextView overview;
+        TextView title;
     }
 
     public MovieArrayAdapter(Context context, List<Movie> movies) {
@@ -83,11 +84,21 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             } else {
                 viewHolderPopular = (ViewHolderPopular) convertView.getTag();
             }
+            viewHolderPopular.overview = (TextView) convertView.findViewById(R.id.tvOverviewPopular);
+            viewHolderPopular.title = (TextView) convertView.findViewById(R.id.tvTitlePopular);
             viewHolderPopular.image = (ImageView) convertView.findViewById(R.id.ivMovieImagePopular);
             viewHolderPopular.image.setImageResource(0);
             convertView.setTag(viewHolderPopular);
+            // Populate the data from the data object via the viewHolder object
+            // into the template view.
+            if (viewHolderPopular.title != null) {
+                viewHolderPopular.title.setText(movie.getOriginalTitle());
+            }
+            if (viewHolderPopular.overview != null) {
+                viewHolderPopular.overview.setText(movie.getOverview());
+            }
             //use 3rd party lib to set the image
-            path = getImagePath(movie, true);
+            path = movie.getBackdropPath();
             //TODO: Check with Nathan, fit() resizes the image
             Picasso.with(getContext()).load(path)
                     .transform(new RoundedCornersTransformation(10, 10))
@@ -111,29 +122,12 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             viewHolder.title.setText(movie.getOriginalTitle());
             viewHolder.overview.setText(movie.getOverview());
             //use 3rd party lib to set the image
-            path = getImagePath(movie, false);
+            path = movie.getPosterPath();
             //TODO: Check with Nathan, fit() resizes the image
             Picasso.with(getContext()).load(path)
                     .transform(new RoundedCornersTransformation(10, 10))
                     .placeholder(R.drawable.moviepopcorn).into(viewHolder.image);
         }
         return convertView;
-    }
-
-    /**
-     * Returns the appropriate image path (TODO: Check with Nathan)
-     * @param movie
-     * @param isBackDrop
-     * @return
-     */
-    private String getImagePath(Movie movie, boolean isBackDrop) {
-        String path = null;
-        int orientation = getContext().getResources().getConfiguration().orientation;
-        if ((orientation == Configuration.ORIENTATION_LANDSCAPE) || isBackDrop) {
-            path = movie.getBackdropPath();
-        } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            path = movie.getPosterPath();
-        }
-        return path;
     }
 }
