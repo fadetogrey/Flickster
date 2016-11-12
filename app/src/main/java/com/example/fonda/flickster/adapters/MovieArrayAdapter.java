@@ -80,36 +80,42 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.item_movie_popular, parent, false);
                 viewHolderPopular = new ViewHolderPopular();
-                viewHolderPopular.image = (ImageView) convertView.findViewById(R.id.ivMovieImagePopular);
-                viewHolderPopular.image.setImageResource(0);
-                convertView.setTag(viewHolderPopular);
-                //use 3rd party lib to set the image
-                path = getImagePath(movie, true);
-                Picasso.with(getContext()).load(path).transform(new RoundedCornersTransformation(10, 10)).into(viewHolderPopular.image);
             } else {
                 viewHolderPopular = (ViewHolderPopular) convertView.getTag();
             }
+            viewHolderPopular.image = (ImageView) convertView.findViewById(R.id.ivMovieImagePopular);
+            viewHolderPopular.image.setImageResource(0);
+            convertView.setTag(viewHolderPopular);
+            //use 3rd party lib to set the image
+            path = getImagePath(movie, true);
+            //TODO: Check with Nathan, fit() resizes the image
+            Picasso.with(getContext()).load(path)
+                    .transform(new RoundedCornersTransformation(10, 10))
+                    .placeholder(R.drawable.moviepopcorn).into(viewHolderPopular.image);
         } else if (viewType == Movie.MovieImageTypes.POSTER.ordinal()) {
             ViewHolder viewHolder;
             if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.item_movie, parent, false);
-                viewHolder = new ViewHolder();
-                viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
-                viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
-                viewHolder.image = (ImageView) convertView.findViewById(R.id.ivMovieImage);
-                viewHolder.image.setImageResource(0);
-                convertView.setTag(viewHolder);
-                // Populate the data from the data object via the viewHolder object
-                // into the template view.
-                viewHolder.title.setText(movie.getOriginalTitle());
-                viewHolder.overview.setText(movie.getOverview());
-                //use 3rd party lib to set the image
-                path = getImagePath(movie, false);
-                Picasso.with(getContext()).load(path).transform(new RoundedCornersTransformation(10, 10)).into(viewHolder.image);
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
+            viewHolder = new ViewHolder();
+            viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
+            viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
+            viewHolder.image = (ImageView) convertView.findViewById(R.id.ivMovieImage);
+            viewHolder.image.setImageResource(0);
+            convertView.setTag(viewHolder);
+            // Populate the data from the data object via the viewHolder object
+            // into the template view.
+            viewHolder.title.setText(movie.getOriginalTitle());
+            viewHolder.overview.setText(movie.getOverview());
+            //use 3rd party lib to set the image
+            path = getImagePath(movie, false);
+            //TODO: Check with Nathan, fit() resizes the image
+            Picasso.with(getContext()).load(path)
+                    .transform(new RoundedCornersTransformation(10, 10))
+                    .placeholder(R.drawable.moviepopcorn).into(viewHolder.image);
         }
         return convertView;
     }
@@ -125,6 +131,9 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         int orientation = getContext().getResources().getConfiguration().orientation;
         if ((orientation == Configuration.ORIENTATION_LANDSCAPE) || isBackDrop) {
             path = movie.getBackdropPath();
+            if (path == null) {
+                path = movie.getPosterPath();
+            }
         } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             path = movie.getPosterPath();
         }

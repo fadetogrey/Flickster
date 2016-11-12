@@ -11,4 +11,37 @@
         android:layout_alignParentStart="true"
         tools:src="@mipmap/ic_launcher"
         android:id="@+id/ivMovieImagePopular" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/ivMovieImagePopular"
+        android:layout_toEndOf="@+id/ivMovieImagePopular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="false">
+
+        <TextView
+            android:text="Doctor Strange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivMovieImagePopular"
+            android:layout_toEndOf="@+id/ivMovieImagePopular"
+            android:layout_marginLeft="@dimen/title_indent"
+            android:layout_marginStart="@dimen/title_indent"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tvTitle"
+            android:textAppearance="@android:style/TextAppearance.Large" />
+
+        <TextView
+            android:text="After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/OverviewFont"
+            android:id="@+id/tvOverview"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignLeft="@+id/tvTitle"
+            android:layout_alignStart="@+id/tvTitle" />
+
+    </LinearLayout>
 </RelativeLayout>

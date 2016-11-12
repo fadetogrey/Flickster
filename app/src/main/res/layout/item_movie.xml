@@ -26,29 +26,31 @@
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="false">
 
-    <TextView
-        android:text="Doctor Strange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivMovieImage"
-        android:layout_toEndOf="@+id/ivMovieImage"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
-        android:id="@+id/tvTitle"
-        android:textAppearance="@android:style/TextAppearance.Large" />
+        <TextView
+            android:text="Doctor Strange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ivMovieImage"
+            android:layout_toEndOf="@+id/ivMovieImage"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:id="@+id/tvTitle"
+            android:textAppearance="@android:style/TextAppearance.Large" />
 
-    <TextView
-        android:text="After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil."
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvOverview"
-        style="@style/OverviewFont"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="@dimen/overview_indent"
-        android:layout_marginLeft="@dimen/overview_indent"
-        android:layout_below="@+id/tvTitle"
-        android:layout_alignLeft="@+id/tvTitle"
-        android:layout_alignStart="@+id/tvTitle" />
+        <TextView
+            android:text="After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under his wing and trains him to defend the world against evil."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvOverview"
+            style="@style/OverviewFont"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/overview_indent"
+            android:layout_marginLeft="@dimen/overview_indent"
+            android:layout_below="@+id/tvTitle"
+            android:layout_alignLeft="@+id/tvTitle"
+            android:layout_alignStart="@+id/tvTitle" />
+
     </LinearLayout>
+
 </RelativeLayout>
