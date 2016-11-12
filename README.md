@@ -2,7 +2,7 @@
 
 Flickster shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: 16 hours spent in total
+Time spent: 16.5 hours spent in total
 
 ## User Stories
 
@@ -37,7 +37,7 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] Use poster image when backdrop is not available.
 
 ## Video Walkthrough
 

@@ -60,7 +60,11 @@ public class Movie {
      * @return Formatted Image URL
      */
     public String getBackdropPath() {
-        return String.format("https://image.tmdb.org/t/p/w780/%s", backdropPath);
+        String path = backdropPath;
+        if (backdropPath == null || backdropPath.isEmpty() || backdropPath == "null" ) {
+            return getPosterPath();
+        }
+        return String.format("https://image.tmdb.org/t/p/w780/%s", path);
     }
 
     /**

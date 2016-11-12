@@ -131,9 +131,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         int orientation = getContext().getResources().getConfiguration().orientation;
         if ((orientation == Configuration.ORIENTATION_LANDSCAPE) || isBackDrop) {
             path = movie.getBackdropPath();
-            if (path == null) {
-                path = movie.getPosterPath();
-            }
         } else if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             path = movie.getPosterPath();
         }
