@@ -60,6 +60,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
     /**
      * Populates and returns the View object with item from data model
+     * Uses Row View Recycling and ViewHolder Pattern for performance
      * @param position Position of item in the list
      * @param convertView
      * @param parent
@@ -76,7 +77,6 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
         if (viewType == Movie.MovieImageTypes.BACKDROP.ordinal()) {
             ViewHolderPopular viewHolderPopular;
-
             if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.item_movie_popular, parent, false);
@@ -108,10 +108,10 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             if (convertView == null) {
                 LayoutInflater inflater = LayoutInflater.from(getContext());
                 convertView = inflater.inflate(R.layout.item_movie, parent, false);
+                viewHolder = new ViewHolder();
             } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
-            viewHolder = new ViewHolder();
             viewHolder.overview = (TextView) convertView.findViewById(R.id.tvOverview);
             viewHolder.title = (TextView) convertView.findViewById(R.id.tvTitle);
             viewHolder.image = (ImageView) convertView.findViewById(R.id.ivMovieImage);

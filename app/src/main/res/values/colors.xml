@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="darkThemeBackgroundColor">#000000</color>
     <color name="darkThemeForegroundColor">#cacaca</color>
+    <color name="ratingBackgroundColor">#69ffb4</color>
+    <color name="detailsBackgroundColor">#333333</color>
 </resources>

@@ -2,7 +2,7 @@
 
 Flickster shows the latest movies currently playing in theaters. The app utilizes the Movie Database API to display images and basic information about these movies to the user.
 
-Time spent: 17.5 hours spent in total
+Time spent: 23 hours spent in total
 
 ## User Stories
 
@@ -19,7 +19,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 * [x] Improved the user interface through styling and coloring, added Theming.
-* [ ] Allow user to view details of the movie including ratings and popularity within a separate activity or dialog fragment.
+* [x] Allow user to view details of the movie including ratings and popularity within a separate activity or dialog fragment.
 * [x] When viewing a popular movie (i.e. a movie voted for more than 5 stars) the video should show the full backdrop image as the layout.  Uses [Heterogenous ListViews](http://guides.codepath.com/android/Implementing-a-Heterogenous-ListView) or [Heterogenous RecyclerView](http://guides.codepath.com/android/Heterogenous-Layouts-inside-RecyclerView) to show different layouts.
 
 The following **stretch** features are implemented:
@@ -51,6 +51,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+* Understanding how to combine Heterogeneous Views with Row View Recycling using View Holder pattern.
+* Understanding that two different ViewHolders were required if the layout is different.
+* Getting the ratings color and max number of stars. setMax() seems to conflict with layout_width="wrap_content". 
 
 ## Open-source libraries used
 

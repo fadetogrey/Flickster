@@ -1,9 +1,12 @@
 package com.example.fonda.flickster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.fonda.flickster.adapters.MovieArrayAdapter;
@@ -24,6 +27,12 @@ import cz.msebera.android.httpclient.Header;
  * Main view for displaying list of current movies
  */
 public class MovieActivity extends AppCompatActivity {
+
+    public final String ITEM_TITLE = "itemTitle";
+    public final String ITEM_PATH = "itemPath";
+    public final String ITEM_OVERVIEW = "itemOverview";
+    public final String ITEM_RATING = "itemRating";
+    public final String ITEM_DATE = "itemDate";
 
     ArrayList<Movie> movies;
     MovieArrayAdapter movieAdapter;
@@ -47,6 +56,21 @@ public class MovieActivity extends AppCompatActivity {
         lvItems.setAdapter(movieAdapter);
         // Make the initial fetch
         fetchMoviesData();
+
+        // Add click handler
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent data = new Intent(MovieActivity.this, DetailsActivity.class);
+                Movie movie = movieAdapter.getItem(position);
+                data.putExtra(ITEM_RATING, movie.getPopularity());
+                data.putExtra(ITEM_OVERVIEW, movie.getOverview());
+                data.putExtra(ITEM_TITLE, movie.getOriginalTitle());
+                data.putExtra(ITEM_DATE, movie.getReleaseDate());
+                data.putExtra(ITEM_PATH, movie.getBackdropPath());
+                startActivity(data);
+            }
+        });
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);

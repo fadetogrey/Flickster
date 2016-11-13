@@ -6,4 +6,7 @@
     <dimen name="overview_text_size">10sp</dimen>
     <dimen name="title_indent">11dp</dimen>
     <dimen name="overview_indent">3dp</dimen>
+    <dimen name="details_indent">10dp</dimen>
+    <dimen name="rating_maxwidth">230dp</dimen>
+    <dimen name="title_margin_bottom">6dp</dimen>
 </resources>

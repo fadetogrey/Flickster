@@ -17,7 +17,9 @@ public class Movie {
     String originalTitle;
     String overview;
     String posterPath;
-    Long voteAverage;
+    Double popularity;
+    String releaseDate;
+    Double voteAverage;
 
     public enum MovieImageTypes {
         BACKDROP, POSTER
@@ -33,7 +35,9 @@ public class Movie {
         this.originalTitle = jsonObject.getString("original_title");
         this.overview = jsonObject.getString("overview");
         this.posterPath = jsonObject.getString("poster_path");
-        this.voteAverage = jsonObject.getLong("vote_average");
+        this.popularity = jsonObject.getDouble("popularity");
+        this.releaseDate = jsonObject.getString("release_date");
+        this.voteAverage = jsonObject.getDouble("vote_average");
     }
 
     /**
@@ -92,10 +96,27 @@ public class Movie {
     }
 
     /**
-     * Returns the movie vote average
-     * @return Long respresenting movie vote average
+     * Returns the movie popularity
+     * @return Double representing movie popularity
      */
-    public Long getVoteAverage() {
+    public Double getPopularity() {
+        return popularity;
+    }
+
+    /**
+     * Returns the movie release date
+     * @return String representing movie release date
+     */
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+
+    /**
+     * Returns the movie vote average
+     * @return Double representing movie vote average
+     */
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
